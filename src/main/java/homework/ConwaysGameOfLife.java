@@ -118,6 +118,7 @@ public class ConwaysGameOfLife {
 			cell.setAlive(pCellCord[0], pCellCord[1]);
 		}
 		cell.draw();
+		println("");
 		
 	}
 
@@ -151,6 +152,7 @@ public class ConwaysGameOfLife {
     		cell.setAlive(ThreadLocalRandom.current().nextInt(0, this.boardSize[0]), ThreadLocalRandom.current().nextInt(0, this.boardSize[1]));
     	}
     	cell.draw();
+    	println("");
     }
     
     /**
