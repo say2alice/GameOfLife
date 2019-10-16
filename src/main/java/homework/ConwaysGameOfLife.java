@@ -24,12 +24,15 @@ public class ConwaysGameOfLife {
 	        game.readProps(null);
 	        game.setGame(null);
         }
+        
+        game.play();
     }
     
     boolean flgRandomCell = false;
 	private Properties props = new Properties();
 	int[] boardSize = {40,80};
 	private Cell cell = null;
+	private int generation = 0;
     
     private static void println(String out) {
         System.out.println(out);
@@ -64,7 +67,15 @@ public class ConwaysGameOfLife {
      * @param strGeneration
      */
     private void setGame(String strGeneration) {
+    	if(strGeneration !=null)
+    		this.generation = Integer.parseInt(strGeneration);
     	
+    	inputSizeofSquare();
+    	
+    	if(!flgRandomCell) {
+	        inputCellAlive();
+	        inputGeneration();
+    	}
     }
     
     /**
@@ -88,8 +99,39 @@ public class ConwaysGameOfLife {
         setCellSize(this.boardSize[0], this.boardSize[1]);
     }
     
+    private void inputCellAlive() {
+		StringTokenizer tokenizer = new StringTokenizer(this.props.getProperty("init.cells"), "|");
+
+		while (tokenizer.hasMoreElements()) {
+
+			String initCell = tokenizer.nextToken();
+			StringTokenizer _tokenizer = new StringTokenizer(initCell, ",");
+
+			int pCellCord[] = { 0, 0 };
+			for (int i = 0; _tokenizer.hasMoreElements(); i++) {
+				pCellCord[i] = Integer.parseInt(_tokenizer.nextToken());
+			}
+			cell.setAlive(pCellCord[0], pCellCord[1]);
+		}
+	}
+
+    private void inputGeneration() {
+    	if(this.generation == 0)
+    		this.generation = Integer.parseInt(this.props.getProperty("init.maxGenerations"));
+    }
+    
     private void setCellSize(int rows, int cols) {
         cell = new Cell(rows, cols);
+    }
+    
+    private void play() {
+        for (int i = 0; i < generation; i++) {
+            cell.step();
+            try {Thread.sleep(500);} catch (InterruptedException e) {e.printStackTrace();}
+            //cell.clear();
+            cell.draw();
+            println("");
+        }
     }
     
     /**
