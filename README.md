@@ -4,8 +4,11 @@ Game of Life Java 버전입니다. 시각화는 Consol로 표현됩니다.
 
 ## Usage
 >$java -jar [lib_file] [property file] [generation]
+
 >$java -jar cgol-0.2.2.jar
+
 >$java -jar cgol-0.2.2.jar cgol.properties
+
 >$java -jar cgol-0.2.2.jar cgol.properties 10
 
 설정값이 없을 때 기본 board 크기는 80*40 이며 60 generation 까지 임의 셀이 설됩니다
