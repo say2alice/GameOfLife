@@ -78,7 +78,7 @@ public class ConwaysGameOfLife {
 	        inputGeneration();
     	} else {
     		initRadomGame();
-    		this.generation = 3;
+    		this.generation = 30;
     	}
     }
     
@@ -98,8 +98,7 @@ public class ConwaysGameOfLife {
 			}
     	}
 		
-		 println("Size of square : " + this.boardSize[0] + "*" +this. boardSize[1]);
-        
+		println("Size of square : " + this.boardSize[0] + "*" +this. boardSize[1]);
         setCellSize(this.boardSize[0], this.boardSize[1]);
     }
     
@@ -144,11 +143,7 @@ public class ConwaysGameOfLife {
     private void initRadomGame() {
     	int aliveCellCount = ThreadLocalRandom.current().nextInt(0, this.boardSize[0]*this.boardSize[1]);
     	
-    	cell.setAlive(9, 11);
-    	cell.setAlive(10, 9);
-    	cell.setAlive(10, 10);
-    	
-    	for(int i = 0; i < aliveCellCount; i++) {
+   	   	for(int i = 0; i < aliveCellCount; i++) {
     		cell.setAlive(ThreadLocalRandom.current().nextInt(0, this.boardSize[0]), ThreadLocalRandom.current().nextInt(0, this.boardSize[1]));
     	}
     	cell.draw();
