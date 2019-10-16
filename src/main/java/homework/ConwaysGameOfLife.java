@@ -4,6 +4,7 @@ import java.io.FileInputStream;
 import java.io.IOException;
 import java.util.Properties;
 import java.util.StringTokenizer;
+import java.util.concurrent.ThreadLocalRandom;
 
 public class ConwaysGameOfLife {
 	
@@ -75,6 +76,9 @@ public class ConwaysGameOfLife {
     	if(!flgRandomCell) {
 	        inputCellAlive();
 	        inputGeneration();
+    	} else {
+    		initRadomGame();
+    		this.generation = 10;
     	}
     }
     
@@ -113,6 +117,8 @@ public class ConwaysGameOfLife {
 			}
 			cell.setAlive(pCellCord[0], pCellCord[1]);
 		}
+		cell.draw();
+		
 	}
 
     private void inputGeneration() {
@@ -132,6 +138,19 @@ public class ConwaysGameOfLife {
             cell.draw();
             println("");
         }
+    }
+    
+    private void initRadomGame() {
+    	int aliveCellCount = ThreadLocalRandom.current().nextInt(0, this.boardSize[0]*this.boardSize[1]);
+    	
+    	cell.setAlive(9, 11);
+    	cell.setAlive(10, 9);
+    	cell.setAlive(10, 10);
+    	
+    	for(int i = 0; i < aliveCellCount; i++) {
+    		cell.setAlive(ThreadLocalRandom.current().nextInt(0, this.boardSize[0]), ThreadLocalRandom.current().nextInt(0, this.boardSize[1]));
+    	}
+    	cell.draw();
     }
     
     /**
