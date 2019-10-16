@@ -49,11 +49,11 @@ public class ConwaysGameOfLife {
      */
     private void readProps(String propFileName) {
     	if(propFileName != null) {
-	    	println("Working Directory : " + System.getProperty("user.dir"));
+	    	println("Props File : " + System.getProperty("user.dir") + "/" + propFileName);
 	        String propsPath = System.getProperty("user.dir");
 	
 	        try {
-				this.props.load(new FileInputStream(propsPath + "\\" + propFileName));
+				this.props.load(new FileInputStream(propsPath + "/" + propFileName));
 			} catch (IOException e) {
 				println("Initialize Random Cells");
 				this.flgRandomCell = true;
@@ -78,7 +78,7 @@ public class ConwaysGameOfLife {
 	        inputGeneration();
     	} else {
     		initRadomGame();
-    		this.generation = 10;
+    		this.generation = 3;
     	}
     }
     
